@@ -1,9 +1,9 @@
 name: Release
 on:
-  - push:
-      branches:
-        - master
-  - workflow_dispatch
+  workflow_dispatch:
+  push:
+    branches:
+      - master
 jobs:
   release:
     name: Release
