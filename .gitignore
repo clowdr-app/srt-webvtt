@@ -13,3 +13,5 @@ umd/
 # misc
 .DS_Store
 npm-debug.log*
+.rpt2_cache
+dist
