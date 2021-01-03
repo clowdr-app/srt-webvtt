@@ -24,7 +24,7 @@ export class WebVTTConverter {
      * @param {*} success
      * @param {*} fail
      */
-    static blobToString(blob: Blob, success: (text: string) => void, fail: () => void) {
+    static blobToString(blob: Blob, success: (text: string) => void, fail: () => void): void {
         const reader = new FileReader();
         reader.addEventListener("loadend", (event) => {
             if (!event.target?.result || typeof event.target.result !== "string") {
@@ -39,7 +39,7 @@ export class WebVTTConverter {
     /**
      * @param {*} utf8str
      */
-    static toVTT(utf8str: string) {
+    static toVTT(utf8str: string): string {
         return utf8str
             .replace(/\{\\([ibu])\}/g, "</$1>")
             .replace(/\{\\([ibu])1\}/g, "<$1>")
@@ -51,7 +51,7 @@ export class WebVTTConverter {
     /**
      * @param {*} str
      */
-    static toTypedArray(str: string) {
+    static toTypedArray(str: string): Uint8Array {
         const result: number[] = [];
         str.split("").forEach((each) => {
             result.push(parseInt(each.charCodeAt(0).toString(), 16));
@@ -59,7 +59,7 @@ export class WebVTTConverter {
         return Uint8Array.from(result);
     }
 
-    getURL() {
+    getURL(): Promise<string> {
         return new Promise((resolve, reject) => {
             if (!(this.resource instanceof Blob))
                 return reject("Expecting resource to be a Blob but something else found.");
@@ -88,7 +88,7 @@ export class WebVTTConverter {
         });
     }
 
-    release() {
+    release(): void {
         URL.createObjectURL(this.objectURL);
     }
 }
