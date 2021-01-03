@@ -1,5 +1,4 @@
 name: Release
-environment: npm-release
 on:
   workflow_dispatch:
   push:
@@ -9,6 +8,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    environment: npm-release
     steps:
       - name: Checkout
         uses: actions/checkout@v2
