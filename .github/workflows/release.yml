@@ -1,4 +1,5 @@
 name: Release
+environment: npm-release
 on:
   workflow_dispatch:
   push:
